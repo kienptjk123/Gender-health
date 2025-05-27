@@ -31,7 +31,7 @@ export const profileApi = {
       })
       return response.data
     } catch (error) {
-      console.error('Failed to update profile:', error)
+      console.error('Failed to update profi:', error)
       throw error
     }
   }
