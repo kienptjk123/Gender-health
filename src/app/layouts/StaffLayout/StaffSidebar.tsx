@@ -1,5 +1,4 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/app/components/ui/avatar'
-import { Badge } from '@/app/components/ui/badge'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,61 +17,23 @@ import {
   SidebarMenuButton,
   SidebarMenuItem
 } from '@/app/components/ui/sidebar'
-import {
-  Calendar,
-  BookOpen,
-  Heart,
-  Settings,
-  User,
-  ShoppingBag,
-  Bell,
-  LogOut,
-  ChevronDown,
-  Home,
-  Activity
-} from 'lucide-react'
+import { BookOpen, ChevronDown, Home, LogOut, Settings, ShoppingBag, User } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 
 const navigationItems = [
   {
     title: 'Dashboard',
-    url: '/customer/dashboard',
+    url: '/staff/dashboard',
     icon: Home
   },
   {
-    title: 'Menstrual Cycle',
-    url: '/customer/cycle',
-    icon: Heart
-  },
-  {
-    title: 'Test Packages',
-    url: '/customer/test-packages',
-    icon: Activity
-  },
-  {
     title: 'Blog & Articles',
-    url: '/customer/blog',
+    url: '/staff/blog',
     icon: BookOpen
-  },
-  {
-    title: 'Appointments',
-    url: '/customer/appointments',
-    icon: Calendar
-  },
-  {
-    title: 'Orders',
-    url: '/customer/orders',
-    icon: ShoppingBag
-  },
-  {
-    title: 'Notifications',
-    url: '/customer/notifications',
-    icon: Bell,
-    badge: '5'
   }
 ]
 
-export default function CustomerSidebar() {
+export default function StaffSidebar() {
   const location = useLocation()
 
   return (
@@ -111,11 +72,6 @@ export default function CustomerSidebar() {
                       >
                         <div className='relative flex items-center justify-center'>
                           <item.icon className='h-5 w-5 transition-transform ' />
-                          {item.badge && (
-                            <Badge className='absolute -top-2 -right-2 h-5 w-5 rounded-full bg-red-500 text-[10px] font-bold text-white flex items-center justify-center p-0 group-data-[collapsible=icon]:scale-75 group-data-[collapsible=icon]:-top-1 group-data-[collapsible=icon]:-right-1'>
-                              {item.badge}
-                            </Badge>
-                          )}
                         </div>
                         <span className='font-medium group-data-[collapsible=icon]:hidden'>{item.title}</span>
                       </Link>
