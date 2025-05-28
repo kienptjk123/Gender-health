@@ -10,10 +10,10 @@ RUN npm install -f
 COPY . .
 
 # Set environment variables before build
-ENV VITE_API_BASE_URL=http://52.221.179.12:4000/
+ENV VITE_API_BASE_URL=https://developgenderhealth.io.vn/
 ENV VITE_GOOGLE_CLIENT_ID=928966535131-jc1iutqk21arfti7slbcc2obd79i4c90.apps.googleusercontent.com
 ENV VITE_GOOGLE_CLIENT_SECRET=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
-ENV VITE_GOOGLE_REDIRECT_URI=http://ec2-52-221-179-12.ap-southeast-1.compute.amazonaws.com:4000/users/oauth/google
+ENV VITE_GOOGLE_REDIRECT_URI=https://developgenderhealth.io.vn/users/oauth/google
 
 RUN npm run build
 
