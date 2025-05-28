@@ -6,12 +6,3 @@ export const fetcher = axios.create({
     'Content-Type': 'application/json'
   }
 })
-
-// fetcher.interceptors.request.use((config) => {
-//   config.headers = {
-//     ...config.headers,
-//     accessToken: token ? `${token}` : "",
-//   }
-
-//   return config;
-// })
