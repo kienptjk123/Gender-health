@@ -1,10 +1,8 @@
 # Step 1: Build the Vite frontend
 FROM node:18-alpine AS build
 
-# Set working directory
 WORKDIR /app
 
-# Install dependencies
 COPY package.json package-lock.json ./
 RUN npm install -f
 
@@ -17,7 +15,6 @@ ENV VITE_GOOGLE_CLIENT_ID=928966535131-jc1iutqk21arfti7slbcc2obd79i4c90.apps.goo
 ENV VITE_GOOGLE_CLIENT_SECRET=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
 ENV VITE_GOOGLE_REDIRECT_URI=http://ec2-52-221-179-12.ap-southeast-1.compute.amazonaws.com:4000/users/oauth/google
 
-# Build for production
 RUN npm run build
 
 # Step 2: Serve the built app using NGINX
