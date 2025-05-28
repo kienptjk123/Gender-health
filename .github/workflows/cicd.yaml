@@ -35,4 +35,4 @@ jobs:
         run: docker rm -f reactContainer || true
 
       - name: Run docker container
-        run: docker run -d -p 3000:80 --name reactContainer kienptjk123/react-app:latest
+        run: docker run -d -p 80:80 --name reactContainer kienptjk123/react-app:latest
