@@ -25,7 +25,6 @@ RUN rm -rf /usr/share/nginx/html/*
 
 # Copy built assets
 COPY --from=build /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Optional: Add custom nginx config if needed
 # COPY nginx.conf /etc/nginx/nginx.conf
