@@ -9,7 +9,7 @@ export const fetcher = axios.create({
 
 // fetcher.interceptors.request.use((config) => {
 //   const token = localStorage.getItem('access_token')
-//   if (token) {
+//   if (tokn) {
 //     config.headers.Authorization = `Bearer ${token}`
 //   }
 //   return config
