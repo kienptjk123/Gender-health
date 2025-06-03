@@ -51,7 +51,6 @@ export default function OrderModal({ id, handleCloseModal, isOpen }: OrderModalP
     reset
   } = form
 
-  // Function onSubmit
   const onSubmit = async (data: OrderFormRequest) => {
     setIsLoadingOrder(true)
     try {
@@ -66,7 +65,7 @@ export default function OrderModal({ id, handleCloseModal, isOpen }: OrderModalP
       const orderId = orderResponse?.data?.orderItems?.[0]?.id
 
       if (!orderId) {
-        throw new Error('Unable to create order. Please try again.')
+        throw new Error('Unable to create order. Please try again')
       }
 
       toast.success('Order has been placed successfully! Redirecting to the payment page...', {
@@ -79,11 +78,8 @@ export default function OrderModal({ id, handleCloseModal, isOpen }: OrderModalP
         amount: packageDetail?.price || 0
       }
 
-      console.log('object', data)
-
       const paymentResponse: PaymentResponse = await paymentApi.createPayment(paymentPayload)
       const paymentUrl = paymentResponse?.data?.payment_url
-      console.log('object1', paymentUrl)
       if (paymentUrl) {
         const a = document.createElement('a')
         a.href = paymentUrl
