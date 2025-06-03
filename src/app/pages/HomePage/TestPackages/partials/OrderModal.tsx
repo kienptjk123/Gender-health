@@ -80,14 +80,10 @@ export default function OrderModal({ id, handleCloseModal, isOpen }: OrderModalP
       }
       const paymentResponse: PaymentResponse = await paymentApi.createPayment(paymentPayload)
       const paymentUrl = paymentResponse?.data?.payment_url
-
       if (paymentUrl) {
         const a = document.createElement('a')
         a.href = paymentUrl
-        a.target = '_blank'
-        a.rel = 'noopener noreferrer'
         a.click()
-
         handleCloseModal()
       }
     } catch (err: any) {

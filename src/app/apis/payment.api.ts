@@ -1,7 +1,6 @@
-import type { AxiosError, AxiosResponse } from "axios"
-import { fetcher } from "./fetcher"
-import type { PaymentRequest, PaymentResponse } from "../pages/HomePage/TestPackages/models/PaymentTest"
-
+import type { AxiosError, AxiosResponse } from 'axios'
+import { fetcher } from './fetcher'
+import type { PaymentRequest, PaymentResponse } from '../pages/HomePage/TestPackages/models/PaymentTest'
 
 export const paymentApi = {
   createPayment: async (data: PaymentRequest): Promise<PaymentResponse> => {
