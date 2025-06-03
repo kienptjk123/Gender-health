@@ -78,8 +78,12 @@ export default function OrderModal({ id, handleCloseModal, isOpen }: OrderModalP
         order_id: orderId,
         amount: packageDetail?.price || 0
       }
+
+      console.log('object', data)
+
       const paymentResponse: PaymentResponse = await paymentApi.createPayment(paymentPayload)
       const paymentUrl = paymentResponse?.data?.payment_url
+      console.log('object1', paymentUrl)
       if (paymentUrl) {
         const a = document.createElement('a')
         a.href = paymentUrl
