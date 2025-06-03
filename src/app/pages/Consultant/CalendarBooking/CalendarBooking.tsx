@@ -30,6 +30,7 @@ const CalendarBooking = () => {
     { title: 'Team Meeting', start: '2025-06-02T10:00:00', end: '2025-06-02T11:00:00' },
     { title: 'Project Review', start: '2025-06-03T14:00:00', end: '2025-06-03T15:30:00' }
   ])
+  console.log(setEvents)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const form = useForm<ConsultantFormData>({
@@ -58,6 +59,7 @@ const CalendarBooking = () => {
       data.consultantProfileId = sConsultantProfile.value.consultant_profile_id
       console.log('data: ', data)
       const response = await scheduleApi.creteConsultantSchedule(data)
+      console.log(response)
       toast.success('Event created successfully!')
       form.reset()
       setIsModalOpen(false)

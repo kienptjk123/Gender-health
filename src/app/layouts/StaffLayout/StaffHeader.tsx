@@ -1,15 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/app/components/ui/avatar'
-import { Button } from '@/app/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from '@/app/components/ui/dropdown-menu'
 import { SidebarTrigger } from '@/app/components/ui/sidebar'
-import { Bell, LogOut, Settings, ShoppingBag, User } from 'lucide-react'
-import { Link } from 'react-router-dom'
 import NotificationDropdown from './partials/NotificationDropdown'
 import UserDropdown from './partials/UserDropdown'
 

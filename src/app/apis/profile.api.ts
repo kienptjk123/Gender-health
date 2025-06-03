@@ -26,6 +26,22 @@ export const profileApi = {
       throw error
     }
   },
+  updateProfile: async (data: Partial<UpdateProfileInput>): Promise<profileResponse> => {
+    try {
+      const accessToken = localStorage.getItem('access_token')
+
+      const response: AxiosResponse<profileResponse> = await fetcher.put('/users/update/me', data, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+      return response.data
+    } catch (error) {
+      console.error('Failed to update profile:', error)
+      throw error
+    }
+  },
   updatePassword: async (data: PasswordForm): Promise<profileResponse> => {
     try {
       const response: AxiosResponse<profileResponse> = await fetcher.put('/users/change-password', data, {
