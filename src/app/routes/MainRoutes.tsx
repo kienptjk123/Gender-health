@@ -34,6 +34,9 @@ import CreateBlog from '../pages/Staff/BlogStaff/CreateBlog'
 import EditBlog from '../pages/Staff/BlogStaff/EditBlog'
 import TagStaff from '../pages/Staff/TagStaff/TagStaff'
 import Forum from '@/app/pages/HomePage/Forum/Forum'
+import CreateTag from '../pages/Staff/TagStaff/CreateTag'
+import PaymentSuccess from '../pages/HomePage/Payment/PaymentSuccess'
+import PaymentFailed from '../pages/HomePage/Payment/PaymentFailed'
 
 export default function MainRoutes() {
   return (
@@ -59,6 +62,8 @@ export default function MainRoutes() {
           <Route path='/blog' element={<Blog />} />
           <Route path='/blog/:id' element={<BlogDetail />} />
           <Route path='/forum' element={<Forum />} />
+          <Route path='/payment/success' element={<PaymentSuccess />} />
+          <Route path='/payment/failed' element={<PaymentFailed />} />
         </Route>
 
         <Route path='/login/oauth' element={<OauthLogin />} />
@@ -97,6 +102,7 @@ export default function MainRoutes() {
           <Route path={staffPath.blogCreate} element={<CreateBlog />} />
           <Route path={staffPath.blogEdit} element={<EditBlog />} />
           <Route path={staffPath.tag} element={<TagStaff />} />
+          <Route path={staffPath.tagCreate} element={<CreateTag />} />
         </Route>
       </Routes>
     </>
