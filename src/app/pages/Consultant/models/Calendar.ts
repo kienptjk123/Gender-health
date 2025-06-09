@@ -14,6 +14,10 @@ export interface BookedBy {
 }
 
 export interface DataResponseCalendar {
+  data: CalendarEvent1[]
+}
+
+export interface CalendarEvent1 {
   id: number
   consultantProfileId: number
   title: string
@@ -28,7 +32,6 @@ export interface DataResponseCalendar {
   bookedBy: BookedBy | null
   bookedAt: string | null
 }
-
 export interface CalendarEvent {
   title: string
   start: string
