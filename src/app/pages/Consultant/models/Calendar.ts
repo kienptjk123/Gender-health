@@ -14,10 +14,11 @@ export interface BookedBy {
 }
 
 export interface DataResponseCalendar {
-  data: CalendarEvent1[]
+  message: string
+  data: SieuNhanDo[]
 }
 
-export interface CalendarEvent1 {
+export interface SieuNhanDo {
   id: number
   consultantProfileId: number
   title: string

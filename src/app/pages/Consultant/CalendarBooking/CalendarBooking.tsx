@@ -19,7 +19,7 @@ import { AlertCircle, CalendarIcon, CheckCircle, Clock, Clock3, Info, Plus, X } 
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
-import type { CalendarEvent, CalendarEvent1, ExtendedProps, ScheduleResponse } from '../models/Calendar'
+import type { CalendarEvent, ExtendedProps, ScheduleResponse, SieuNhanDo } from '../models/Calendar'
 import type { ConsultantFormData } from '../models/Consultant'
 import {
   dateCalendarValidation,
@@ -61,8 +61,8 @@ const CalendarBooking = () => {
         return 'bg-blue-50 text-blue-700 border-blue-200'
     }
   }
-  const mapToCalendarEvents = (apiData: CalendarEvent1[]): CalendarEvent[] => {
-    return apiData.map((item: CalendarEvent1) => {
+  const mapToCalendarEvents = (apiData: SieuNhanDo[]): CalendarEvent[] => {
+    return apiData.map((item: SieuNhanDo) => {
       const datePart = item.date.split('T')[0]
       const start = `${datePart}T${item.startTime}:00`
       const end = `${datePart}T${item.endTime}:00`

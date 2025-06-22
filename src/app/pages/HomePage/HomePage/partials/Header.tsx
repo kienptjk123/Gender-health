@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger
 } from '@/app/components/ui/dropdown-menu'
 import { clearUserProfileSignify, setUserProfileToSignify } from '@/app/hooks/sUserProfile'
+import { ROLE_ROUTES } from '@/app/pages/Auth/Login/Login'
 import type { getProfileResult } from '@/app/pages/Customer/Profile/models/Profile'
 import { LogOut, Settings, ShoppingBag, User } from 'lucide-react'
 import { useEffect, useState } from 'react'
@@ -37,6 +38,16 @@ export default function Header() {
   })
 
   const accessToken = localStorage.getItem('access_token')
+
+  const handleNavigateProfile = () => {
+    const userRole = localStorage.getItem('user_role')?.toUpperCase()
+
+    if (userRole === 'ADMIN') {
+      nav(ROLE_ROUTES[userRole])
+    } else {
+      nav('/profile')
+    }
+  }
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -90,6 +101,12 @@ export default function Header() {
             >
               Test Packages
             </Link>
+            <Link
+              to='/booking-consultant'
+              className='text-sm font-medium text-gray-700 hover:text-pink-600 transition-colors'
+            >
+              Booking Consultant
+            </Link>
           </nav>
           {accessToken ? (
             <DropdownMenu>
@@ -117,12 +134,15 @@ export default function Header() {
                   </div>
                 </div>
                 <DropdownMenuSeparator className='bg-pink-100' />
-                <Link to='/profile'>
-                  <DropdownMenuItem className='rounded-lg mx-1 my-1 hover:bg-pink-50 cursor-pointer'>
-                    <User className='mr-3 h-4 w-4 text-pink-500' />
-                    <span>Profile</span>
-                  </DropdownMenuItem>
-                </Link>
+                <DropdownMenuItem
+                  onClick={() => {
+                    handleNavigateProfile()
+                  }}
+                  className='rounded-lg mx-1 my-1 hover:bg-pink-50 cursor-pointer'
+                >
+                  <User className='mr-3 h-4 w-4 text-pink-500' />
+                  <span>Profile</span>
+                </DropdownMenuItem>
                 <DropdownMenuItem
                   className='rounded-lg mx-1 my-1 hover:bg-pink-50 cursor-pointer'
                   onClick={() => nav('/orders')}
