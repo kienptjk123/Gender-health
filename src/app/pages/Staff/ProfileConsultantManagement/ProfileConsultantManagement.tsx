@@ -6,19 +6,20 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '
 import { Input } from '@/app/components/ui/input'
 import { Label } from '@/app/components/ui/label'
 import { format } from 'date-fns'
-import { memo, useEffect, useState, useCallback } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { getScheduleColumns } from './partials/columns'
 import DataTable from './partials/DataTable'
 
 import type { ProfileConsultantResult as OriginalProfileConsultantResult } from '@/app/pages/Staff/ProfileConsultantManagement/models/ProfleConsultantManagement'
+import { Activity } from 'lucide-react'
 
 export interface ProfileConsultantResult extends Omit<OriginalProfileConsultantResult, 'avatar' | 'coverPhoto'> {
   avatar: string | File | null
   coverPhoto: string | File | null
 }
 
-interface EditConsultantModalProps {
+export interface EditConsultantModalProps {
   isOpen: boolean
   onOpenChange: (open: boolean) => void
   selectedConsultant: ProfileConsultantResult | null
@@ -27,7 +28,7 @@ interface EditConsultantModalProps {
   onCancel: () => void
 }
 
-interface ViewConsultantModalProps {
+export interface ViewConsultantModalProps {
   isOpen: boolean
   onOpenChange: (open: boolean) => void
   selectedConsultant: ProfileConsultantResult | null
@@ -36,11 +37,9 @@ interface ViewConsultantModalProps {
 // EditConsultantModal Component
 const EditConsultantModal = memo(
   ({ isOpen, onOpenChange, selectedConsultant, setSelectedConsultant, onSave, onCancel }: EditConsultantModalProps) => {
-    // State for image previews
     const [avatarPreview, setAvatarPreview] = useState<string | null>(null)
     const [coverPhotoPreview, setCoverPhotoPreview] = useState<string | null>(null)
 
-    // Handle input changes with generic type
     const handleInputChange = <K extends keyof ProfileConsultantResult>(
       field: K,
       value: ProfileConsultantResult[K]
@@ -48,7 +47,6 @@ const EditConsultantModal = memo(
       setSelectedConsultant((prev) => (prev ? { ...prev, [field]: value } : prev))
     }
 
-    // Generate temporary URLs for image previews
     useEffect(() => {
       if (!selectedConsultant) {
         setAvatarPreview(null)
@@ -144,7 +142,6 @@ const EditConsultantModal = memo(
                   value={(() => {
                     const fieldValue = selectedConsultant[id as keyof ProfileConsultantResult]
 
-                    // Handle specific formatters
                     if (id === 'date_of_birth' && fieldValue && typeof fieldValue === 'string') {
                       return format(new Date(fieldValue), 'yyyy-MM-dd')
                     }
@@ -215,7 +212,6 @@ const EditConsultantModal = memo(
   }
 )
 
-// ViewConsultantModal Component
 const ViewConsultantModal = memo(({ isOpen, onOpenChange, selectedConsultant }: ViewConsultantModalProps) => (
   <Dialog open={isOpen} onOpenChange={onOpenChange}>
     <DialogContent className='sm:max-w-[600px] max-h-[80vh] overflow-y-auto'>
@@ -528,24 +524,34 @@ const ProfileConsultantManagement = () => {
   }, [])
 
   return (
-    <div className='p-4'>
-      <h1 className='text-2xl font-bold mb-4'>Consultant Profile Management</h1>
-      <div className='table-container'>
-        <DataTable columns={getScheduleColumns({ onEdit: handleEdit, onView: handleView })} data={consultants} />
-        <EditConsultantModal
-          isOpen={isEditModalOpen}
-          onOpenChange={setIsEditModalOpen}
-          selectedConsultant={selectedConsultant}
-          setSelectedConsultant={setSelectedConsultant}
-          onSave={handleSave}
-          onCancel={handleCancel}
-        />
-        <ViewConsultantModal
-          isOpen={isViewModalOpen}
-          onOpenChange={setIsViewModalOpen}
-          selectedConsultant={selectedConsultant}
-        />
+    <div className='space-y-6'>
+      <div className='bg-white p-6 rounded-lg  border'>
+        <div className='flex items-center justify-between'>
+          <div className='flex items-center space-x-3'>
+            <div className='p-2 bg-blue-100 rounded-lg'>
+              <Activity className='h-6 w-6 text-blue-600' />
+            </div>
+            <div>
+              <h1 className='text-2xl font-bold text-gray-900'>Profile Consultant Management </h1>
+              <p className='text-gray-600 mt-1'>Monitor and manage Consultant test progress for all customers</p>
+            </div>
+          </div>
+        </div>
       </div>
+      <DataTable columns={getScheduleColumns({ onEdit: handleEdit, onView: handleView })} data={consultants} />
+      <EditConsultantModal
+        isOpen={isEditModalOpen}
+        onOpenChange={setIsEditModalOpen}
+        selectedConsultant={selectedConsultant}
+        setSelectedConsultant={setSelectedConsultant}
+        onSave={handleSave}
+        onCancel={handleCancel}
+      />
+      <ViewConsultantModal
+        isOpen={isViewModalOpen}
+        onOpenChange={setIsViewModalOpen}
+        selectedConsultant={selectedConsultant}
+      />
     </div>
   )
 }

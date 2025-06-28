@@ -57,12 +57,12 @@ export default function DataTable<TData>({ columns, data }: DataTableProps<TData
 
   return (
     <div>
-      <div className='flex items-center py-4'>
+      <div className='flex items-center pb-6'>
         <Input
           placeholder='Filter title...'
           value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
           onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
-          className='max-w-sm'
+          className='max-w-sm bg-white'
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -87,11 +87,11 @@ export default function DataTable<TData>({ columns, data }: DataTableProps<TData
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className='rounded-md border'>
+      <div className='rounded-lg min-h-[625px]'>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={headerGroup.id} className='bg-gray-100'>
                 {headerGroup.headers.map((header) => (
                   <TableHead key={header.id}>
                     <div className='text-center w-full'>
@@ -114,13 +114,6 @@ export default function DataTable<TData>({ columns, data }: DataTableProps<TData
                         </div>
                       </TableCell>
                     ))}
-                  </TableRow>
-                ))}
-                {Array.from({
-                  length: table.getState().pagination.pageSize - table.getRowModel().rows.length
-                }).map((_, idx) => (
-                  <TableRow key={`empty-${idx}`} className='h-[50px]'>
-                    <TableCell colSpan={columns.length} />
                   </TableRow>
                 ))}
               </>
