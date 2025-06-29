@@ -13,12 +13,8 @@ COPY . .
 ENV VITE_API_BASE_URL=https://developgenderhealth.io.vn
 ENV VITE_GOOGLE_CLIENT_ID=928966535131-jc1iutqk21arfti7slbcc2obd79i4c90.apps.googleusercontent.com
 ENV VITE_GOOGLE_CLIENT_SECRET=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
-<<<<<<< HEAD
-ENV VITE_GOOGLE_REDIRECT_URI=https://developgenderhealth.io.vn/users/oauth/google
-=======
 ENV VITE_GOOGLE_REDIRECT_URI=http://ec2-52-221-179-12.ap-southeast-1.compute.amazonaws.com:4000/users/oauth/google
 ENV VITE_GEMINI_API_KEY=AIzaSyCLxqjPPvMLW5MxTl00S6JUPlSP1tvf3uE
->>>>>>> 11079a3ae88ca463fa947c1d2e36549060f1951c
 
 RUN npm run build
 
